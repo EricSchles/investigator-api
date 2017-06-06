@@ -26,3 +26,7 @@ Werkzeug
 twilio
 geopandas
 shapely
+Flask-HTTPAuth
+MarkupSafe
+itsdangerous
+passlib
