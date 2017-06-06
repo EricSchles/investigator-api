@@ -17,7 +17,7 @@ def to_dict(elem):
 def process_coordinate(elem):
     return elem.rstrip(")").lstrip("(").split("_")
     
-@app.route("/api/coordinates/bounding_box/<query>", method=["GET"])
+@app.route("/api/coordinates/bounding_box/<query>", methods=["GET"])
 def api_coordinates_bounding_box(query):
     box = [process_coordinate(elem) for elem in query.split(",")]
     lat_box = [elem[0] for elem in box]
@@ -25,29 +25,29 @@ def api_coordinates_bounding_box(query):
     return jsonify({"query_result":[to_dict(elem) for elem in BackpageAdInfo.query.all() if contains(lat_box,long_box,(elem.latitude, elem.longitude))]})
     
 
-@app.route("/api/phone_number/<query>", method=["GET"])
+@app.route("/api/phone_number/<query>", methods=["GET"])
 def api_phone_number_query(query):
     return jsonify({"query_result":[to_dict(elem) for elem in BackpageAdInfo.query.filter_by(phone_number=query).all()]})
 
-@app.route("/api/location/<query>", method=["GET"])
+@app.route("/api/location/<query>", methods=["GET"])
 def api_location_query(query):
     city,state = query.split(",")
     return jsonify({"query_result":[to_dict(elem) for elem in BackpageAdInfo.query.filter_by(state=state).all() if elem.city == city]})
 
-@app.route("/api/coordinates/<query>", method=["GET"])
+@app.route("/api/coordinates/<query>", methods=["GET"])
 def api_coordinates_query(query):
     latitude,longitude = query.split(",")
     return jsonify({"query_result":[to_dict(elem) for elem in BackpageAdInfo.query.filter_by(latitude=latitude).all() if elem.longitude == longitude]})
 
-@app.route("/api/phone_number/all", method=["GET"])
+@app.route("/api/phone_number/all", methods=["GET"])
 def api_phone_number_all():
     return jsonify({"all_phone_numbers":[elem.phone_number for elem in BackpageAdInfo.query.all()]})
 
-@app.route("/api/coordinates/all", method=["GET"])
+@app.route("/api/coordinates/all", methods=["GET"])
 def api_coordinates_all():
     return jsonify({"all_coordinates":[(elem.latitude,elem.longitude) for elem in BackpageAdInfo.query.all()]})
 
-@app.route("/api/location/all", method=["GET"])
+@app.route("/api/location/all", methods=["GET"])
 def api_location_all():
     return jsonify({"all_locations":[(elem.city,elem.state) for elem in BackpageAdInfo.query.all()]})
 
