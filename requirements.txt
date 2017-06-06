@@ -1,6 +1,4 @@
-boto
 keras
-elasticsearch
 zipcode
 gunicorn
 geopy
@@ -15,7 +13,7 @@ Flask-SQLAlchemy
 Jinja2
 lxml
 matplotlib
-nose
+pytest
 num2words
 pandas
 patsy
