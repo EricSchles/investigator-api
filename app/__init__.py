@@ -8,10 +8,11 @@ from flask.ext.httpauth import HTTPBasicAuth
 
 username,password = "eric_s","1234"
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
-#app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://"+username+":"+password+"@localhost/backpage_ads"
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-#app.config["SECRET_KEY"] = "the quick brown fox jumps over the lazy dog"
+#app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://"+username+":"+password+"@localhost/backpage_ads_api"
+#app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["SECRET_KEY"] = "the quick brown fox jumps over the lazy dog"
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 
