@@ -8,7 +8,10 @@ import requests
 
 result = requests.post("https://investigator-api.herokuapp.com/api/phone_number/all", data={"username":"eric", "password":"likeIdtellyou"}).json()
 print(result[0])
+
 ```
+
+
 API all methods:
 
 * `/api/phone_number/all`: gets you all the phone numbers in the database
