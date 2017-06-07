@@ -13,6 +13,9 @@ import json
 # https://blog.miguelgrinberg.com/post/restful-authentication-with-flask
 # https://github.com/miguelgrinberg/REST-auth
 
+@app.route("/", methods=["GET", "POST"])
+def index():
+    return "Congrats, you've reached investigator's api in order to use the api please visit our docs at: https://github.com/hackingagainstslavery/investigator-api/blob/master/api_docs.md"
 
 @auth.verify_password
 def verify_password(username_or_token, password):
